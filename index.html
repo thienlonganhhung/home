@@ -46,16 +46,11 @@
 
 
  
-$( document ).ready(function() {
-	var url = "https://id.thienlonganhhung.com/top.php";
-	$.getJSON( url, {
-  	format: "json"
-	})
-  .done(function( data ) {
-     $("#iid").text(data.data.id);
-     $("#name").text(data.data.name);
-  });
-});
+  $.getJSON( "resources/screenText.json", function( data ) {
+      $.each( data, function( key, val ) {
+        $( `#${key}`).html(val);
+      });
+    });
 </script>
 
 <style>
@@ -72,6 +67,10 @@ $( document ).ready(function() {
  </head>
 
 <body>
+
+<span id="id"></span>
+<span id="name"></span>
+ 
  
     <nav class="nav">
         <div class="container d-flex">
@@ -369,10 +368,7 @@ BẢNG XẾP HẠNG LEVEL
 <tbody>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script></script>
-
-<div id="iid"></div>
-<div id="name"></div>
+ 
 
 
 
