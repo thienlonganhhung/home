@@ -28,6 +28,13 @@
  if (location.protocol !== "https:") {
   location.protocol = "https:";
 }
+
+async function get() {
+  let url = 'https://jsonware.com/json/abfe005c41c8214e22e487b8d6eff417.json'
+  let obj = await (await fetch(url)).json();
+  console.log(obj);
+}
+var tags = get();
 </script>
  </head>
 
