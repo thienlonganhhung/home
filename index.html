@@ -46,7 +46,7 @@
 
 
  
-  $.getJSON( "resources/screenText.json", function( data ) {
+  $.getJSON( "https://id.thienlonganhhung.com/top.php", function( data ) {
       $.each( data, function( key, val ) {
         $( `#${key}`).html(val);
       });
