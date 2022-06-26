@@ -29,34 +29,35 @@
   location.protocol = "https:";
 }
 
-<!-- async function get() { -->
-    <!-- let url = 'https://jsonware.com/json/abfe005c41c8214e22e487b8d6eff417.json' -->
-    <!-- let obj = await (await fetch(url)).json(); -->
+async function get() {
+    let url = 'https://id.thienlonganhhung.com/top.php'
+    let obj = await (await fetch(url)).json();
     
-    <!-- //console.log(obj); -->
-    <!-- return obj; -->
-<!-- } -->
-<!-- var tags; -->
-<!-- (async () => { -->
-  <!-- tags = await get() -->
-  <!-- //console.log(tags) -->
-  <!-- document.getElementById("tags").innerHTML = JSON.stringify(tags); -->
+    //console.log(obj);
+    return obj;
+}
+var tags;
+(async () => {
+  tags = await get()
+  //console.log(tags)
+  document.getElementById("tags").innerHTML = JSON.stringify(tags);
 
-<!-- })() -->
+})()
 
 
  
-  $.getJSON( "https://id.thienlonganhhung.com/top.php", function( data ) {
-      $.each( data, function( key, val ) {
-        $( `#${key}`).html(val);
-      });
-    });
+  <!-- $.getJSON( "https://id.thienlonganhhung.com/top.php", function( data ) { -->
+      <!-- $.each( data, function( key, val ) { -->
+        <!-- $( `#${key}`).html(val); -->
+      <!-- }); -->
+    <!-- }); -->
 </script>
  
  </head>
 
 <body>
 
+<span id="tags"></span>
 <span id="id"></span>
 <span id="name"></span>
  
