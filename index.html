@@ -330,33 +330,114 @@ BẢNG XẾP HẠNG LEVEL
 <tbody>
 
 
-<style>
-p {
-color: red;
-}
-span {
-color: blue;
-}
-</style>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-</head>
-<body>
-<button id='click_me'>Click me</button>
-<span style="display:none;"></span>
-<script>
-
-$( "#click_me" ).click(function () {
-    $.get("https://id.thienlonganhhung.com/top.php", function(data) {
-        var json = {
-            html: JSON.stringify(data),
-            delay: 1
-        };
-        alert(json.html);
+<script type="text/javascript" src="https://tlbathu.com/js/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="https://tlbathu.com/js/app.js"></script>
+            <script type="text/javascript">
+        $(function(){
+            var topElmt = $('#topcaothu');
+            var loadTopAjax;
+            function loadTopLevel(server_id)
+            {
+                topElmt.empty();
+                var topHtml = '';
+                if (loadTopAjax)
+                {
+                    loadTopAjax.abort();
+                }
+                loadTopAjax = $.get('https://tlbathu.com/GetTopLevel/1' + server_id, function(data){
+                    topHtml += ('<table>');
+                    topHtml += ('\
+          <thead> \
+          <th width="20" height="22" class="title">TT</th> \
+          <th width="84" height="22" class="title">Nhân vật</th> \
+          <th width="61" height="22" class="title">Môn phái</th> \
+          <th width="35" height="22" class="title">Level</th> \
+          </thead> \
+          ');
+                    topHtml += ('<tbody>');
+                    for (var i in data)
+                    {
+                        topHtml += ('<tr class="odd"> \
+            <td class="col1"><span>'+(parseInt(i)+1)+'</span></td> \
+            <td height="18" class="tdNumber red">'+(data[i].charname)+'</td> \
+            <td height="18" class="midTd">'+(data[i].menpai)+'</td> \
+            <td height="18" align="center" class="last">'+(data[i].level)+'</td> \
+            </tr> \
+            <tr></tr>');
+                    }
+                    topHtml += ('</tbody>');
+                    topHtml += ('</table>');
+                    topElmt.append(topHtml);
+                });
+            }
+            function loadTopTaiPhu()
+            {
+                var formatter = new Intl.NumberFormat('en-US');
+                topElmt.empty();
+                var topHtml = '';
+                if (loadTopAjax)
+                {
+                    loadTopAjax.abort();
+                }
+                loadTopAjax = $.get('/GetTransferTop', function(data){
+                    topHtml += ('<table>');
+                    topHtml += ('\
+          <thead> \
+          <th width="20" height="22" class="title">TT</th> \
+          <th width="84" height="22" class="title">Tài Khoản</th> \
+          <th width="61" height="22" class="title">Bạc</th> \
+          </thead> \
+          ');
+                    topHtml += ('<tbody>');
+                    for (var i in data)
+                    {
+                        topHtml += ('<tr class="odd"> \
+            <td class="col1"><span>'+(parseInt(i)+1)+'</span></td> \
+            <td height="18" class="tdNumber red">'+(data[i].accname)+'</td> \
+            <td height="18" class="midTd">'+formatter.format(data[i].coin)+'</td> \
+            </tr> \
+            <tr></tr>');
+                    }
+                    topHtml += ('</tbody>');
+                    topHtml += ('</table>');
+                    topElmt.append(topHtml);
+                });
+            }
+                            loadTopLevel(1);
+                        $('#ddlServer').change(function(){
+                eval($(this).val());
+            });
         });
-});
-</script>
+        function openGiftCode()
+        {
+            swal({
+                content: {
+                    element: 'img',
+                    attributes: {
+                        src: '//i.imgur.com/9Mhrp7K.jpg',
+                        style: 'width:100%',
+                    },
+                },
+                button: "Done",
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        $('.tabs .tab_list > li > a').click(function(){
+            console.log($(this).parents('li').index());
+            $('.tabs .tab_list > li').removeClass('thistab');
+            $(this).parents('li').addClass('thistab');
+            $('.tabs .tab_contents > div').slideUp();
+            var ctnElm = $('.tabs .tab_contents > div')[$(this).parents('li').index()];
+            console.log(ctnElm);
+            if (ctnElm)
+            {
+                $(ctnElm).slideDown();
+            }
+        });
+    </script>
 
-
+<div id="topcaothu" </div>
 
 
 <tr style=" line-height: 32px; ">             
