@@ -45,28 +45,19 @@
 <!-- })() -->
 
 
-var obj = {"data": [
-{
- "name": "Rehan",
- "location": "Pune",
- "description": "hello hi",
- "created_by": 13692,
- "users_name": "xyz",
-},
-{
-  "name": "Sameer",
-  "location": "Bangalore",
-  "description": "how are you",
-  "created_by": 13543,
-  "users_name": "abc",
+ 
+function getElement(id) {
+  return document.getElementById(id);
 }
-]}
-var divId = document.getElementById("tags")
-for(var i=0;i<obj.data.length;i++)
-for(var keys in obj.data[i]){
- console.log(keys +"-->"+obj.data[i][keys]);
- divId.innerHTML = divId.innerHTML + "<br/>"+ keys +"-->"+obj.data[i][keys];
-}
+
+fetch('https://id.thienlonganhhung.com/top.php')
+.then(res => res.json())
+.then((res) => {
+  const data = res.data;
+  getElement('id').innerHTML =  'Name: ' + data.id;
+  getElement('name').innerHTML = 'Symbol: ' + data.name;
+  // do the rest here
+});
  
 </script>
 
@@ -382,12 +373,12 @@ BẢNG XẾP HẠNG LEVEL
 
 
 
-<div id="tags"></div>
-
-
-
-
-
+<div>
+  <p id="name"></p>
+  <p id="symbol"></p>
+  <p id="rank"></p>
+  <p id="price"></p>
+</div>
 
 
 
