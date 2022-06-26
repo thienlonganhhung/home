@@ -30,11 +30,18 @@
 }
 
 async function get() {
-  let url = 'https://jsonware.com/json/abfe005c41c8214e22e487b8d6eff417.json'
-  let obj = await (await fetch(url)).json();
-  console.log(obj);
+    let url = 'https://jsonware.com/json/abfe005c41c8214e22e487b8d6eff417.json'
+    let obj = await (await fetch(url)).json();
+    
+    //console.log(obj);
+    return obj;
 }
-var tags = get();
+var tags;
+(async () => {
+  tags = await get()
+  //console.log(tags)
+  document.getElementById("tags").innerHTML = JSON.stringify(tags);
+})()
 </script>
  </head>
 
@@ -334,6 +341,20 @@ BẢNG XẾP HẠNG LEVEL
 </tr>
 </thead>           
 <tbody>
+
+
+
+<div id="tags"></div>
+
+
+
+
+
+
+
+
+
+
 <tr style=" line-height: 32px; ">             
 <td width="10"><i>1</i></td>             
 <td width="100" title="3C42E226" style=" max-width: 100px; ">fffffffff</td>            
