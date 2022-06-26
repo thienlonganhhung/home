@@ -25,41 +25,13 @@
     <link rel="stylesheet" href="img/style.css">
  
 <script>
- if (location.protocol !== "https:") {
-  location.protocol = "https:";
-}
-
-async function get() {
-    let url = 'https://id.thienlonganhhung.com/top.php'
-    let obj = await (await fetch(url)).json();
-    
-    //console.log(obj);
-    return obj;
-}
-var tags;
-(async () => {
-  tags = await get()
-  //console.log(tags)
-  document.getElementById("tags").innerHTML = JSON.stringify(tags);
-
-})()
-
-
  
-  <!-- $.getJSON( "https://id.thienlonganhhung.com/top.php", function( data ) { -->
-      <!-- $.each( data, function( key, val ) { -->
-        <!-- $( `#${key}`).html(val); -->
-      <!-- }); -->
-    <!-- }); -->
 </script>
  
  </head>
 
 <body>
 
-<span id="tags"></span>
-<span id="id"></span>
-<span id="name"></span>
  
  
     <nav class="nav">
@@ -359,7 +331,11 @@ BẢNG XẾP HẠNG LEVEL
 
 
  
-
+<?php
+    
+    $html=file_get_contents('https://id.thienlonganhhung.com/top.php');
+    echo $html;
+    ?>
 
 
 
